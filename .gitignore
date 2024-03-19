@@ -22,3 +22,5 @@ composer.phar
 .vs
 *.phpproj
 *.sln
+/composer.lock
+/vendor/

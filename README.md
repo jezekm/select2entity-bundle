@@ -5,8 +5,7 @@ select2entity-bundle
 
 This is a Symfony bundle which enables the popular [Select2](https://select2.github.io) component to be used as a drop-in replacement for a standard entity field on a Symfony form.
 
-It works with Symfony 4 and 5. For Symfony 2 and 3, please use version or 2.x of the bundle.
-For Select2 4.0 and above. For older versions, use version 1.x of the bundle (not compatible with Symfony 5).
+It works only with Symfony 7 and PHP 8.2+.
 
 The main feature that this bundle provides compared with the standard Symfony entity field (rendered with a html select) is that the list is retrieved via a remote ajax call. This means that the list can be of almost unlimited size. The only limitation is the performance of the database query or whatever that retrieves the data in the remote web service.
 

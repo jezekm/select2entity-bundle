@@ -10,36 +10,18 @@ use Symfony\Component\PropertyAccess\PropertyAccessor;
 
 /**
  * Data transformer for single mode (i.e., multiple = false)
- *
- * Class EntityToPropertyTransformer
- *
- * @package Tetranz\Select2EntityBundle\Form\DataTransformer
  */
 class EntityToPropertyTransformer implements DataTransformerInterface
 {
-    /** @var ObjectManager */
-    protected $em;
-    /** @var  string */
-    protected $className;
-    /** @var  string */
-    protected $textProperty;
-    /** @var  string */
-    protected $primaryKey;
-    /** @var string  */
-    protected $newTagPrefix;
-    /** @var string  */
-    protected $newTagText;
-    /** @var PropertyAccessor */
-    protected $accessor;
+    protected ObjectManager $em;
+    protected string $className;
+    protected ?string $textProperty;
+    protected string $primaryKey;
+    protected string $newTagPrefix;
+    protected string $newTagText;
+    protected PropertyAccessor $accessor;
 
-    /**
-     * @param ObjectManager $em
-     * @param string                 $class
-     * @param string|null            $textProperty
-     * @param string                 $primaryKey
-     * @param string                 $newTagPrefix
-     */
-    public function __construct(ObjectManager $em, $class, $textProperty = null, $primaryKey = 'id', $newTagPrefix = '__', $newTagText = ' (NEW)')
+    public function __construct(ObjectManager $em, string $class, ?string $textProperty = null, string $primaryKey = 'id', string $newTagPrefix = '__', string $newTagText = ' (NEW)')
     {
         $this->em = $em;
         $this->className = $class;
@@ -52,11 +34,8 @@ class EntityToPropertyTransformer implements DataTransformerInterface
 
     /**
      * Transform entity to array
-     *
-     * @param mixed $entity
-     * @return array
      */
-    public function transform($entity)
+    public function transform(mixed $value): mixed
     {
         $data = array();
         if (empty($entity)) {
@@ -81,11 +60,8 @@ class EntityToPropertyTransformer implements DataTransformerInterface
 
     /**
      * Transform single id value to an entity
-     *
-     * @param string $value
-     * @return mixed|null|object
      */
-    public function reverseTransform($value)
+    public function reverseTransform(mixed $value): mixed
     {
         if (empty($value)) {
             return null;
